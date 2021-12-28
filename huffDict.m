@@ -1,4 +1,4 @@
-function huffSimb ( symb, prob)
+function Dict = huffDict ( symb, prob)
     N=length(prob);
     Simb=num2cell([1:N]);
     Dict=cell(1,N);
@@ -8,8 +8,8 @@ function huffSimb ( symb, prob)
         prob(i)=NaN;
         [B,I]=min(prob);
         prob(I)=B+b;
-        arrayfun(@(x)updateDict(x,0) , Simb{i} );
-        arrayfun(@(x)updateDict(x,1) , Simb{I} );
+        arrayfun(@(x)updateDict(x,1) , Simb{i} );
+        arrayfun(@(x)updateDict(x,0) , Simb{I} );
         Simb{I}=[Simb{i} Simb{I}];
         Simb{i}=NaN;
 
