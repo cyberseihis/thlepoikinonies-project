@@ -1,26 +1,38 @@
 function deco= huffDeco(hcode,dict)
-    ff=dict2tree(dict);
-    disp(ff{3});
-    f=ff;
-    for o = hcode
-      f=f(o+2);
-      if(length([f])==1)
-        disp(f);
-        f=ff;
-      endif
+    [M,ff,lenz]=dict2tree(dict);
+    deco=[];
+    f=[];
+    for i = hcode
+        f=[f i];
+        fn=sig2ind(f,M);
+        if(ff(fn)!=0 && lenz(ff(fn))==length(f))
+            deco=[deco ff(fn)];
+            f=[];
+        endif   
     endfor
 endfunction
-function dott= dict2tree(dick)
-    dott={};
-    for i = 1:length(dick)
-        mae=num2cell(dick{i}+2);
-        dott(mae{:})=i;
-        dott;
+function [M,dott,lenz]= dict2tree(dick)
+    M=0;
+    lenz=zeros(length(dick));
+    for i= 1:length(dick)
+        M=max(M,length(dick{i}));
+        lenz(i)=length(dick{i});
     endfor
-    dott;
+    %normalize
+    en=zeros(1,2^M);
+    for i= 1:length(dick)
+        while length(dick{i})<M
+          dick{i}=[dick{i} 0];
+        endwhile
+        dick{i}=bin2dec(sprintf('%i',dick{i}));
+        en(dick{i}+1)=i;
+    endfor
+    dott=en;
 endfunction
 
-function beginswith0 (ar)
-    disp(ar);
-    % return(true);
+function en = sig2ind (ar,M)
+    while length(ar)<M
+        ar=[ar 0];
+    endwhile
+    en=bin2dec(sprintf('%i',ar))+1;
 endfunction
