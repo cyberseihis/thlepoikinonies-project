@@ -1,0 +1,10 @@
+nn=7;
+rngProb=rand(1,nn);
+rngProb=rngProb/sum(rngProb);
+jj=huffDict([1:nn] , rngProb);
+sam=rand(1,16)*nn+1;
+sam=floor(sam);
+ee=huffEnco(sam,jj);
+ff=huffDeco(ee,jj);
+disp(ff);
+disp(sam);
