@@ -1,4 +1,4 @@
-function [xq, centers, D] =  Lloyd_Max(x, N, min_value, max_value)
+function [xq, centers, D] =  Bquantizer(x, N, min_value, max_value)
     mv=max_value-min_value;
     x=x-min_value;
     M=2^N;
