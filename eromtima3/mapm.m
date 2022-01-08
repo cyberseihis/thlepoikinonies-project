@@ -11,6 +11,7 @@ function mapm ()
     endfor
     gt = @(t) ((t<=0 && t<Ts)*sqrt(2/Ts));
     sm= @(t,m) (gt(t)*cos(2*pi*t*(fc + m/Ts)));
+    tesr= sm(0.2,5);
     mes= @(m)   (arrayfun(sm, [0:0.1:Ts-0.1], m*ones(1,Ts/0.1)));
     sig=[];
     for i = symba
