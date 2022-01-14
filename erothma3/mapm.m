@@ -1,8 +1,8 @@
-function mapm ()
+function mapm (M,Awg)
+    Lb=1002;
     Ts=4;
-    M=8;
     fc=2.5;
-    bytesrc=floor(rand(1,1002)*2);
+    bytesrc=floor(rand(1,Lb)*2);
     symba=[];
     for i = 0:length(bytesrc)/log2(M)-1
         y=i*log2(M)+1;
@@ -24,4 +24,11 @@ function mapm ()
     recie=recie';
     [tem, fm]=max(recie);
     fm=fm-1;
+endfunction
+
+function rat = BER (og,rec)
+    bean=dec2bin(og);
+    beam=dec2bin(rec);
+    beam=reshape(beam,1,numel(beam));
+    bean=reshape(bean,1,numel(bean));
 endfunction
