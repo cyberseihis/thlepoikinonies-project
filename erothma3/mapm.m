@@ -17,6 +17,9 @@ function mapm (M,Awg)
     for i = symba
         sig= [sig;mes(i)];
     endfor
+    vari=10^(-Awg/10)/(2*log2(M));
+    noise=sqrt(vari)*randn(length(sig));
+    sig=sig+noise;
     for i = 0:M-1
         sysx= [sysx mes(i)'];
     endfor
@@ -26,9 +29,13 @@ function mapm (M,Awg)
     fm=fm-1;
 endfunction
 
-function rat = BER (og,rec)
+function ret = BER (og,rec)
     bean=dec2bin(og);
     beam=dec2bin(rec);
-    beam=reshape(beam,1,numel(beam));
-    bean=reshape(bean,1,numel(bean));
+    beam=beam-bean;
+    ret= length(find(beam))/length(og);
+endfunction
+
+function ret = SER (og,rec)
+    ret= length(find(og-rec))/length(og);
 endfunction
