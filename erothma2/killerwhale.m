@@ -1,7 +1,9 @@
 pkg load statistics;
-xx=[   0.680634   1.050834   3.192122   8.366628   5.233959   7.948872   5.432035   7.196457   8.063133   8.594440   5.587515   2.962791    4.694086   3.454516   6.125598   0.020361   0.540810   0.815422   7.240187   2.070744];
-Bquantizer(xx,3,0,10);
-x1=xx(1:2:length(xx));
-x2=xx(2:2:length(xx));
-xx=[x1;x2];
-[xq,cC,de] =Vquantizer(xx,3);
+M=1000;
+SourceA= randn(1,M);
+x= randn(M,1);
+b=1;
+a = [1 0.5 1/3 1/4 1/5 1/6];
+y=filter(b,a,x);
+[xq, centers, D]=Bquantizer(SourceA,3,min(SourceA),max(SourceA));
+disp(norm(xq - SourceA));
