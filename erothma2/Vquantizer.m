@@ -3,5 +3,5 @@ function [xq, centers, D] =  Vquantizer(x, N )
     [idx, centers, DD] = kmeans(x',K);
     xq= centers(idx, : );
     xq=xq';
-    D= mean(DD);
+    D= sum(DD)/length(xq);
 endfunction
