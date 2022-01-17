@@ -21,3 +21,20 @@ lexic=huffDict([1:length(prben)],prben);
 enco=huffEnco(SrcA,lexic);
 % decc=huffDeco(enco,lexic);
 % ypoerothma4
+PairsA=[(SrcA(1:2:length(SrcA))-1)*27 + (SrcA(1:2:length(SrcA))-1)];
+[Ya Ia Ja]=unique(PairsA);
+cnt2=hist(PairsA, Ya);
+prb2=cnt2/length(PairsA);
+lexic2=huffDict([1:length(prb2)],prb2);
+enco2=huffEnco(Ja,lexic2);
+decc2=huffDeco(enco2,lexic2);
+decc2;
+lenz2=[];
+for i = 1:length(lexic2)
+    lenz2= [lenz2 length(lexic2{i})];
+endfor
+meso2=lenz2 * prb2';
+entro2 =- log(prb2) * prb2';
+apodo2=entro2/meso2;
+% ypoerothma5
+% phghb
