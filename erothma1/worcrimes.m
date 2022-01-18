@@ -18,7 +18,7 @@ apodo=entro/meso;
 prben=[0.0698 , 0.0128 , 0.0238 , 0.0364 , 0.1086 , 0.0190 , 0.0172 , 0.0521 , 0.0595 , 0.0013 , 0.0066 , 0.0344 , 0.0206 , 0.0577 , 0.0642 , 0.0165 , 0.0008 , 0.0512 , 0.0541 , 0.0774 , 0.0236 , 0.0084 , 0.0202 , 0.0013 , 0.0169 , 0.0006 , 0.1453];
 prben=prben/sum(prben);
 lexic=huffDict([1:length(prben)],prben);
-enco=huffEnco(SrcA,lexic);
+encoen=huffEnco(SrcA,lexic);
 % decc=huffDeco(enco,lexic);
 % ypoerothma4
 PairsA=[(SrcA(1:2:length(SrcA))-1)*27 + (SrcA(1:2:length(SrcA))-1)];
@@ -38,3 +38,13 @@ entro2 =- log(prb2) * prb2';
 apodo2=entro2/meso2;
 % ypoerothma5
 % phghb
+CameraMan=load("cameraman.mat").i;
+CameraMan=reshape(CameraMan,1,numel(CameraMan))-6;
+cntB=hist(CameraMan, unique(CameraMan));
+prbB=cntB/length(CameraMan);
+lexicB=huffDict([1:length(prbB)],prbB);
+encoB=huffEnco(CameraMan,lexicB);
+pkg load communications;
+DestB=bsc(encoB, 0.73);
+pB=length(find(DestB-encoB))/length(encoB);
+pb;
