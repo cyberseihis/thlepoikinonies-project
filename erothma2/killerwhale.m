@@ -21,4 +21,3 @@ endfor
 
 beh= arrayfun(Sqnr,D,mean(SourceB.^ 2));
 plot(beh);
-beh;
