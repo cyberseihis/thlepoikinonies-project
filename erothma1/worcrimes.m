@@ -47,4 +47,3 @@ encoB=huffEnco(CameraMan,lexicB);
 pkg load communications;
 DestB=bsc(encoB, 0.73);
 pB=length(find(DestB-encoB))/length(encoB);
-pb;
