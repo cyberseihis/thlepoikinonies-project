@@ -28,7 +28,6 @@ prb2=cnt2/length(PairsA);
 lexic2=huffDict([1:length(prb2)],prb2);
 enco2=huffEnco(Ja,lexic2);
 decc2=huffDeco(enco2,lexic2);
-decc2;
 lenz2=[];
 for i = 1:length(lexic2)
     lenz2= [lenz2 length(lexic2{i})];
@@ -47,3 +46,7 @@ encoB=huffEnco(CameraMan,lexicB);
 pkg load communications;
 DestB=bsc(encoB, 0.73);
 pB=length(find(DestB-encoB))/length(encoB);
+
+bsp=[pB (1 - pB)];
+Capaciti= 1 + log2(bsp) * bsp';
+Capaciti;
