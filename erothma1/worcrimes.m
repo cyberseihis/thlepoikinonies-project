@@ -12,7 +12,7 @@ for i = 1:length(lexic)
     lenz= [lenz length(lexic{i})];
 endfor
 meso=lenz * prb';
-entro =- log(prb) * prb';
+entro =- log2(prb) * prb';
 apodo=entro/meso;
 % ypoerothma3
 prben=[0.0698 , 0.0128 , 0.0238 , 0.0364 , 0.1086 , 0.0190 , 0.0172 , 0.0521 , 0.0595 , 0.0013 , 0.0066 , 0.0344 , 0.0206 , 0.0577 , 0.0642 , 0.0165 , 0.0008 , 0.0512 , 0.0541 , 0.0774 , 0.0236 , 0.0084 , 0.0202 , 0.0013 , 0.0169 , 0.0006 , 0.1453];
@@ -34,7 +34,7 @@ for i = 1:length(lexic2)
     lenz2= [lenz2 length(lexic2{i})];
 endfor
 meso2=lenz2 * prb2';
-entro2 =- log(prb2) * prb2';
+entro2 =- log2(prb2) * prb2';
 apodo2=entro2/meso2;
 % ypoerothma5
 % phghb
